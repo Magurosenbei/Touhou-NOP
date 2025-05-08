@@ -1,0 +1,182 @@
+--Weapon 03
+
+Ws = WeaponSystem('StarDust Reverie')
+PIE = 3.14159265
+
+--Boot
+Ws:DefineSatellite(6, 0, PIE / 3, 70)
+Ws:DefineImage('Textures/Character/Player/Marisa/circle.png', 32)
+Ws:AllowOrbit(false)
+Ws:SetRotation(10 / 18 * PIE)
+Ws:SetFocusRotation(15 / 18 * PIE)
+Ws:AllowRotate(true)
+Ws:SetLowestDistance(50.0)
+Ws:SetDistanceFactor(1.5)
+--Shots
+--Level Basic (0)
+Bt_Def = BulletDef()
+Bt_Def.TexID = Ws:AddImage('Textures/Bullet/Laser.png')
+Bt_Def.TexWidth = 32
+Bt_Def.Color = 4
+Bt_Def.HitBox = 12
+Bt_Def.Velocity = Vector(0, 10, 0)
+Bt_Def.Damage = 10
+Bt_Def.Scale = 0.7
+Bt_Def.Interval = 20
+
+
+-- Level 1
+
+StarShot = BulletDef()
+StarShot.TexID = Ws:AddImage('Textures/Bullet/Star.png')
+StarShot.Color = 0
+StarShot.TexWidth = 32
+StarShot.HitBox = 10
+StarShot.Scale = 0.6
+StarShot.Spin = true
+StarShot.SpinAngle = 16 / 180 * math.pi
+StarShot.Interval = 10
+StarShot.Velocity = Vector(0, 6, 0)
+StarShot.Damage = 9
+StarShot.Relative = true
+
+Ws:AddBullet(1, StarShot, 2, false)
+StarShot.Color = 5
+Ws:AddBullet(1, StarShot, 4, false)
+
+Ws:PushOrder(1, 2)
+Ws:ChangeFrame(2, 1)
+Ws:PushOrder(1, 4)
+Ws:ChangeFrame(4, 3)
+
+--Level 2
+StarShot.Color = 0
+StarShot.Velocity = Vector(-6, 0, 0)
+Ws:AddBullet(2, StarShot, 2, false)
+StarShot.Color = 5
+StarShot.Velocity = Vector(0, 6, 0)
+StarShot.Velocity = StarShot.Velocity:RotateFromPoint(Vector(), PIE / 6)
+Ws:AddBullet(2, StarShot, 4, false)
+StarShot.Color = 7
+StarShot.Velocity = Vector(0, -6, 0)
+StarShot.Velocity = StarShot.Velocity:RotateFromPoint(Vector(), -PIE / 6)
+Ws:AddBullet(2, StarShot, 0, false)
+
+Ws:PushOrder(2, 0)
+Ws:ChangeFrame(2, 0)
+Ws:PushOrder(2, 2)
+Ws:ChangeFrame(2, 1)
+Ws:PushOrder(2, 4)
+Ws:ChangeFrame(4, 3)
+
+
+
+--Level 3
+Ws:PushOrder(3, 1)
+Ws:ChangeFrame(1, 2)
+StarShot.Color = 3
+StarShot.Velocity = Vector(0, -6, 0)
+Ws:AddBullet(3, StarShot, 1, false)
+
+StarShot.Color = 0
+StarShot.Velocity = Vector(-6, 0, 0)
+Ws:PushOrder(3, 2)
+Ws:ChangeFrame(3, 1)
+Ws:AddBullet(3, StarShot, 2, false)
+
+StarShot.Color = 5
+StarShot.Velocity = Vector(0, 6, 0)
+Ws:PushOrder(3, 4)
+Ws:ChangeFrame(4, 3)
+Ws:AddBullet(3, StarShot, 4, false)
+
+
+StarShot.Color = 3
+StarShot.Velocity = Vector(6, 0, 0)
+Ws:PushOrder(3, 5)
+Ws:ChangeFrame(5, 4)
+Ws:AddBullet(3, StarShot, 5, false)
+
+-- Level 4
+StarShot.Color = 0
+StarShot.Velocity = Vector(-6, 0, 0)
+Ws:AddBullet(4, StarShot, 2, false)
+StarShot.Color = 5
+StarShot.Velocity = Vector(0, 6, 0)
+StarShot.Velocity = StarShot.Velocity:RotateFromPoint(Vector(), PIE / 6)
+Ws:AddBullet(4, StarShot, 4, false)
+StarShot.Color = 7
+StarShot.Velocity = Vector(0, -6, 0)
+StarShot.Velocity = StarShot.Velocity:RotateFromPoint(Vector(), -PIE / 6)
+Ws:AddBullet(4, StarShot, 0, false)
+
+Ws:PushOrder(4, 0)
+Ws:ChangeFrame(2, 0)
+Ws:PushOrder(4, 2)
+Ws:ChangeFrame(2, 1)
+Ws:PushOrder(4, 4)
+Ws:ChangeFrame(4, 3)
+
+StarShot.Color = 2
+StarShot.Velocity = Vector(6, 0, 0)
+Ws:PushOrder(4, 5)
+Ws:ChangeFrame(5, 6)
+Ws:AddBullet(4, StarShot, 5, false)
+
+
+StarShot.Color = 2
+StarShot.Velocity = Vector(0, 6, 0)
+StarShot.Velocity = StarShot.Velocity:RotateFromPoint(Vector(), -PIE / 6)
+Ws:PushOrder(4, 3)
+Ws:ChangeFrame(3, 4)
+Ws:AddBullet(4, StarShot, 3, false)
+
+StarShot.Color = 3
+StarShot.Velocity = Vector(0, -6, 0)
+StarShot.Velocity = StarShot.Velocity:RotateFromPoint(Vector(), PIE / 6)
+Ws:PushOrder(4, 1)
+Ws:ChangeFrame(1, 2)
+Ws:AddBullet(4, StarShot, 1, false)
+
+-- Laser
+for index = 1, 10 do
+Bt_Def.Velocity = Vector(0 , index * 2, 0)
+Bt_Def.Acceleration = Vector(0, 6 / index, 0)
+Ws:AddBullet(0, Bt_Def, -1, false)
+Ws:AddBullet(1, Bt_Def, -1, false)
+Ws:AddBullet(2, Bt_Def, -1, false)
+Ws:AddBullet(3, Bt_Def, -1, false)
+Ws:AddBullet(4, Bt_Def, -1, false)
+end
+
+
+Ws.HoldInPlace = false
+Ws.PlayerDash = true
+Ws.DashSpeed = Vector(0,25,0)
+BombDef = BulletDef()
+BombDef.TexID = Ws:AddImage('Textures/Bullet/BigStar.png')
+BombDef.TexWidth = 64
+BombDef.Color = 0
+BombDef.HitBox = 32
+BombDef.Damage = 120
+BombDef.Spin = false
+BombDef.Mass = 10000
+
+min = -5
+max = 5
+
+index = 0
+repeat
+BombDef.Color = math.random(0,7)
+BombDef.Velocity = Vector(0, 1 - index/10, 0)
+Ws:AddBombParts(BombDef)
+
+BombDef.Velocity = Vector(0.1+index/10 * math.random(min,max) / 10, 0.75 - index/10, 0)
+Ws:AddBombParts(BombDef)
+
+BombDef.Velocity = Vector(-0.1-index/10 * math.random(min,max) / 10, 0.75 - index/10, 0)
+Ws:AddBombParts(BombDef)
+index = index + 1
+until index == 12
+
+Ws:Finalize()

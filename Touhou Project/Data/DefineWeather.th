@@ -1,0 +1,30 @@
+
+-- Weather Definition Functions
+-- These functions affect the weather properties.
+
+-- SetWeatherAutoChangeTime( max value, min value )
+-- SetWeatherWindFactor( speed )
+-- SetWeatherChange( percent chance, power to deduct, cooldown time)
+
+-- Note: SetWeatherChange is actually when you press 'C'
+-- while playing the game to force a wind change.
+
+SetWeatherAutoChangeTime(180, 30)
+SetWeatherWindFactor(0.015)
+SetWeatherChange(100, 0.5, 1)
+
+
+
+-- AddWeather
+-- This takes in three values, however, you can ignore the
+-- AddWeatherTexture, because due to last minute changes, it was
+-- hardcoded into the HUD. You must still add a texture for AddWeather
+-- to work, because of the failsafe mechanism build in.
+
+-- Takes in Max Wind and Min Wind
+-- You can set as many as you like, but the wind will be picked
+-- randomly from the weathers that you add.
+
+AddWeather( AddWeatherTexture('Others/null.png'), 10, 0 )
+AddWeather( AddWeatherTexture('Others/null.png'), 20, 10 )
+AddWeather( AddWeatherTexture('Others/null.png'), 30, 20 )

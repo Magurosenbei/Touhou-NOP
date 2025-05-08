@@ -1,0 +1,113 @@
+--Weapon 01
+
+Ws = WeaponSystem('Fanatasy Heaven')
+PIE = 3.14159265
+
+--Boot
+Ws:DefineSatellite(8, 0, PIE * 0.25, 60)
+Ws:DefineImage('Textures/Character/Player/Reimu/yin-yang.png', 16)
+Ws:SetOrbit(1.3 * PIE)
+Ws:SetFocusOrbit(1.7 * PIE)
+Ws:AllowOrbit(false)
+Ws:SetRotation(10 / 18 * PIE)
+Ws:SetFocusRotation(15 / 18 * PIE)
+Ws:AllowRotate(true)
+Ws:SetLowestDistance(30.0)
+Ws:SetDistanceFactor(1.6)
+--Shots
+
+--Level Basic
+Bt_Def = BulletDef()
+Bt_Def.TexID = Ws:AddImage('Textures/Bullet/Talismen.png')
+Bt_Def.TexWidth = 16
+Bt_Def.Color = 0
+Bt_Def.HitBox = 12
+Bt_Def.Velocity = Vector(0, 20, 0)
+Bt_Def.Damage = 15
+
+Ws:AddBullet(0, Bt_Def, -1, false)
+
+--Level 1
+Ws:AddBullet(1, Bt_Def, -1, false)
+
+HBt_Def = BulletDef(Bt_Def)
+HBt_Def.Color = 6
+HBt_Def.Damage = 8
+--HBt_Def.Velocity
+HBt_Def.RelativeVelocity = Vector(0, 10, 0):RotateFromPoint(Vector(), PIE / 4)
+Ws:AddBullet(1, HBt_Def, 2, true)
+Ws:AddBullet(1, HBt_Def, 6, true)
+HBt_Def.RelativeVelocity = Vector(0, 10, 0):RotateFromPoint(Vector(), -PIE / 4)
+Ws:AddBullet(1, HBt_Def, 2, true)
+Ws:AddBullet(1, HBt_Def, 6, true)
+
+Ws:PushOrder(1, 2)
+Ws:PushOrder(1, 6)
+
+--Level 2
+Ws:AddBullet(2, Bt_Def, -1, false)
+HBt_Def.Damage = 3
+index = 0
+repeat
+HBt_Def.RelativeVelocity = Vector(0, 10, 0):RotateFromPoint(Vector(), PIE / 4)
+Ws:AddBullet(2, HBt_Def, index, true)
+HBt_Def.RelativeVelocity = Vector(0, 10, 0):RotateFromPoint(Vector(), -PIE / 4)
+Ws:AddBullet(2, HBt_Def, index, true)
+Ws:PushOrder(2, index)
+index = index + 2
+until index == 8
+
+
+
+--Level 3
+Ws:AddBullet(3, Bt_Def, -1, false)
+HBt_Def.Damage = 2
+HBt_Def.Velocity = Vector(0, 10, 0)
+index = 0
+repeat
+HBt_Def.RelativeVelocity = Vector()
+Ws:AddBullet(3, HBt_Def, index, true)
+HBt_Def.RelativeVelocity = Vector(0, 10, 0):RotateFromPoint(Vector(), PIE / 2)
+Ws:AddBullet(3, HBt_Def, index, true)
+HBt_Def.RelativeVelocity = Vector(0, 10, 0):RotateFromPoint(Vector(), -PIE / 2)
+Ws:AddBullet(3, HBt_Def, index, true)
+Ws:PushOrder(3, index)
+index = index + 2
+until index == 8
+
+
+--Level 4
+HBt_Def.Damage = 1
+index = 0
+repeat
+HBt_Def.RelativeVelocity = Vector()
+Ws:AddBullet(4, HBt_Def, index, true)
+HBt_Def.RelativeVelocity = Vector(0, 10, 0):RotateFromPoint(Vector(), PIE / 2)
+Ws:AddBullet(4, HBt_Def, index, true)
+HBt_Def.RelativeVelocity = Vector(0, 10, 0):RotateFromPoint(Vector(), -PIE / 2)
+Ws:AddBullet(4, HBt_Def, index, true)
+Ws:PushOrder(4, index)
+index = index + 1
+until index == 8
+
+
+--Bomb
+Ws.HoldInPlace = true
+Ws.PlayerDash = false
+Ws.DashSpeed = Vector(0,0,0)
+BombDef = BulletDef()
+BombDef.TexID = Ws:AddImage('Textures/Character/Player/Reimu/board_8.png')
+BombDef.TexWidth = 256
+BombDef.Color = 0
+BombDef.HitBox = 128
+BombDef.Velocity = Vector(0, 0, 0)
+BombDef.Damage = 100
+BombDef.Spin = true
+BombDef.Mass = 10000
+
+BombDef.SpinAngle = 2 / 180 * PIE
+Ws:AddBombParts(BombDef)
+BombDef.SpinAngle = -2 / 180 * PIE
+Ws:AddBombParts(BombDef)
+
+Ws:Finalize()

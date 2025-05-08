@@ -1,0 +1,47 @@
+
+-- Stage Screen
+-- This displays the stage name based on a texture.
+-- This is usually used because other loaders may be pretty slow.
+
+local Dialog_Stage = AddDialogTexture('Stages/1.png')
+SetFlyIn(FLYIN_PLAYER, Dialog_Stage)
+LaunchFlyIn(FLYIN_PLAYER, FLYIN_NONE) -- We don't want to move our flyin texture
+
+local _Background = AddImage('Textures/Background/1.png')
+SetBackground(_Background, _Background)
+
+
+-- If you notice carefully, we use SetFlyIn and LaunchFlyIn
+-- These two functions allow the boss to initiate a spellcard
+-- and any other custom effects during the game.
+
+-- Function Definitions
+-- SetFlyIn( type, texture )
+-- LaunchFlyIn( type, movement )
+
+-- FlyIn Type
+-- FLYIN_PLAYER, FLYIN_ENEMY
+
+-- FlyIn Movement Type
+-- FLYIN_NONE	In this case, you need to call StopAllFlyIn() to remove the flyin.
+-- FLYIN_MOVE	Auto-remove.
+
+
+
+-- Call this function upon stage start in the entry function
+function StartStage()
+
+	-- Stop stage screen
+	Wait(1000)
+	StopAllFlyIn()
+
+	-- Do pre-stage initialization checks
+	-- Define a global variable to store our current player name
+	DIALOG_CURR_PLAYER = GetCurrentPlayer()
+
+	-- Define all player cutins here
+	if DIALOG_CURR_PLAYER == Dialog_Player1 then SetFlyIn(FLYIN_PLAYER, Dialog_Marisa)
+	elseif DIALOG_CURR_PLAYER == Dialog_Player2 then SetFlyIn(FLYIN_PLAYER, Dialog_ReimuR)
+	end
+
+end

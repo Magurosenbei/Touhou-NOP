@@ -1,0 +1,97 @@
+PIE = 3.14159265
+
+function BootUp()
+
+	dofile('Data/Stage 2/Stage2Entry.th')
+	StageMusic = 'Audio/Stage 02.wav'
+
+	dofile('Data/Dialog.th')
+	dofile('Data/DialogTextures.th')
+	dofile('Data/DefineWeather.th')
+	dofile('Data/DefineItem.th')
+
+	dofile('Data/Pattern/SpreadShot.th')
+	dofile('Data/Pattern/CrossShot.th')
+	dofile('Data/Pattern/Pattern_01.th')
+	dofile('Data/Pattern/Pattern_02.th')
+	dofile('Data/Pattern/Pattern_03.th')
+	dofile('Data/Pattern/Pattern_04.th')
+	dofile('Data/Pattern/Pattern_05.th')
+	dofile('Data/Pattern/Pattern_06.th')
+	dofile('Data/AI/STG_01.th')
+	dofile('Data/AI/STG_02.th')
+	dofile('Data/Stage 2/Boss02.th')
+	
+	KunaiID = AddImage('Textures/Bullet/kunai.png')
+	TransID = AddImage('Textures/Bullet/Trans_Ball.png')
+	BallID = AddImage('Textures/Bullet/Round_1.png')
+	ButterflyID = AddImage('Textures/Bullet/Butterfly.png')
+	DaggerID_1 = AddImage('Textures/Bullet/Dagger_1.png')
+	DaggerID_2 = AddImage('Textures/Bullet/Dagger_2.png')
+	StarID = AddImage('Textures/Bullet/Star.png')
+	TalismenID = AddImage('Textures/Bullet/Talismen.png')
+	DiamondID = AddImage('Textures/Bullet/Diamond.png')
+	
+	Enemy = AddImage('Textures/Character/littledemons.png')
+	ChenID = AddImage('Textures/Character/Boss/Yakumo/boss_chen.png')
+	RanID = AddImage('Textures/Character/Boss/Yakumo/boss_ran.png')
+	YuKariID = AddImage('Textures/Character/Boss/Yakumo/boss_yukari.png')
+	
+	ShotSFX01 = LoadSFX('Audio/SFX/Shot_2.wav')
+	ShotSFX02 = LoadSFX('Audio/SFX/Shot_3.wav')
+	ShotSFX03 = LoadSFX('Audio/SFX/Shot_5.wav')
+	ShotSFX04 = LoadSFX('Audio/SFX/Shot_4.wav')
+end
+
+
+function Stage()
+
+	StartStage()
+
+	--m_bDead = false
+	--Stage1_BossDialog()
+	--StartBossMode()
+	--Wait(100)
+	--local nAngle = 0
+	--local nAssign = -1
+	
+	for index = 0, 4 do
+		--nAngle = 90 + 45 * nAssign
+		--SpreadShot(Vector(), 2, 1.5, nAngle, KunaiID, 0, 12)
+		--TwiddleShot(Vector(), nAngle, nAssign, 2, KunaiID, 0, 12, KunaiID, 2, 12, 2, 1.2)
+		--ChainShot(Vector(), 1, KunaiID, 0, 12, 3, 1.2)
+		--RollShotTask(Vector(), 1, 2, 0, KunaiID, 7, 12, KunaiID, 2, 12)
+		--Circular(Vector(), 100, 2, KunaiID, 2, 12)
+		--CrossShot(Vector(), 5, 2, 45, KunaiID, 2, 12)
+		--KillerDoll(Vector(), 2, DaggerID_1, 2, 16)
+		--Fusion(Vector(), 2, BallID, 27, TransID, 62)
+		--nAssign = -nAssign
+		--Wait(100000)
+	end
+	
+	StraightHorizon(1)
+	FromBottom(-1)
+	RandomEnemy()
+	Wait(1000)
+	StraightMarch()
+	StraightHorizon(-1)
+	Wait(1000)
+	FromBottom(1)
+	CrossEnemy()
+	Wait(1000)
+	RandomEnemy()
+	Wait(500)
+	StraightMarch()
+	Wait(100)
+	RandomEnemy()
+	FromBottom(-1)
+	Wait(8000)
+	
+	SwitchBGM('Audio/Boss 02.wav')
+	KillerDoll(Vector(), 2, DaggerID_1, 2, 16)
+	Circular(Vector(), 100, 2, KunaiID, 2, 12)
+	Wait(1000)
+	Stage2_BossDialog()
+	SecondBoss()
+	StageClear()
+end

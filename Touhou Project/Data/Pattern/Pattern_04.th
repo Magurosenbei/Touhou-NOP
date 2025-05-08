@@ -1,0 +1,69 @@
+function Circular(Position, Radius, Level, TexID_1, Color_1, TexWidth_1)
+
+	local Wave = BulletWave()
+	local Shot = BulletDef()
+	local btNum = 30 + 20 * Level
+	local CoordPosition = {}
+	local RadPoint = Vector(0, Radius, 0) + Position
+	local loopAmt = Radius / 6
+	local Delay = 10
+	CoordPosition[1] = RadPoint
+	CoordPosition[2] = CoordPosition[1]:RotateFromPoint(Position, 60/180 * PIE)
+	CoordPosition[3] = CoordPosition[2]:RotateFromPoint(Position, 60/180 * PIE)
+	CoordPosition[4] = CoordPosition[3]:RotateFromPoint(Position, 60/180 * PIE)
+	CoordPosition[5] = CoordPosition[4]:RotateFromPoint(Position, 60/180 * PIE)
+	CoordPosition[6] = CoordPosition[5]:RotateFromPoint(Position, 60/180 * PIE)
+
+
+	Shot.TexID = TexID_1
+	Shot.Color = Color_1
+	Shot.TexWidth = TexWidth_1
+
+
+	Shot.Position = CoordPosition[3]
+	local Gap = (CoordPosition[3] - CoordPosition[1]):Normalize() * 10
+	for index = 0, loopAmt do
+		Gap = (CoordPosition[3] - CoordPosition[1]):Normalize() * 10
+		Shot.Position = CoordPosition[1] + Gap * index
+		Wave:Throw(Shot)
+		
+		Gap = (CoordPosition[6] - CoordPosition[4]):Normalize() * 10
+		Shot.Position = CoordPosition[4] + Gap * index
+		Wave:Throw(Shot)
+		Wait(Delay)
+	end
+	
+	
+	for index = 0, loopAmt do
+		Gap = (CoordPosition[5] - CoordPosition[3]):Normalize() * 10
+		Shot.Position = CoordPosition[3] + Gap * index
+		Wave:Throw(Shot)
+		
+		Gap = (CoordPosition[2] - CoordPosition[6]):Normalize() * 10
+		Shot.Position = CoordPosition[6] + Gap * index
+		Wave:Throw(Shot)
+		Wait(Delay)
+	end
+	
+	
+	for index = 0, loopAmt do
+		Gap = (CoordPosition[1] - CoordPosition[5]):Normalize() * 10
+		Shot.Position = CoordPosition[5] + Gap * index
+		Wave:Throw(Shot)
+		
+		Gap = (CoordPosition[4] - CoordPosition[2]):Normalize() * 10
+		Shot.Position = CoordPosition[2] + Gap * index
+		Wave:Throw(Shot)
+		Wait(Delay)
+	end
+	
+	Wait(1000)
+	
+	Lock()
+	for index = 0, Wave:Size() - 1 do
+		Wave:SetAcceleration(index, (Position - Wave:GetPosition(index)):Normalize() * 0.05)
+	end
+	UnLock()
+	--Wave:ThrowInAll()
+	Wave:ReleaseAll()
+end

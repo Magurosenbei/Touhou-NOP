@@ -1,0 +1,115 @@
+--Weapon 01
+
+Ws = WeaponSystem('Amulet')
+PIE = 3.14159265
+
+--Boot
+Ws:DefineSatellite(4, 0, PIE * 0.5, 50)
+Ws:DefineImage('Textures/Character/Player/Reimu/yin-yang.png', 16)
+Ws:SetOrbit(7 / 18 * PIE)
+Ws:SetFocusOrbit(12 / 18 * PIE)
+Ws:AllowOrbit(true)
+Ws:SetRotation(10 / 18 * PIE)
+Ws:SetFocusRotation(15 / 18 * PIE)
+Ws:AllowRotate(true)
+Ws:SetLowestDistance(30.0)
+Ws:SetDistanceFactor(0.5)
+--Shots
+--Level Basic (0)
+Bt_Def = BulletDef()
+Bt_Def.TexID = Ws:AddImage('Textures/Bullet/Talismen.png')
+Bt_Def.TexWidth = 16
+Bt_Def.Color = 0
+Bt_Def.HitBox = 12
+Bt_Def.Velocity = Vector(0, 20, 0)
+Bt_Def.Damage = 15
+
+-- note: -1 = player position id
+Ws:AddBullet(0, Bt_Def, -1, false)
+
+--Level 1
+Bt_Def.Position = Vector(-8, 0, 0)
+Ws:AddBullet(1, Bt_Def, -1, false)
+Bt_Def.Position = Vector(8, 0, 0)
+Ws:AddBullet(1, Bt_Def, -1, false)
+
+--Level 2
+Bt_Def.Position = Vector(-8, 0, 0)
+Ws:AddBullet(2, Bt_Def, -1, false)
+Bt_Def.Position = Vector(8, 0, 0)
+Ws:AddBullet(2, Bt_Def, -1, false)
+
+Bt_Def.Position = Vector(0, 0, 0)
+HBt_Def = BulletDef(Bt_Def)
+HBt_Def.Homing = true;
+HBt_Def.Color = 7;
+HBt_Def.Damage = 4
+Ws:AddBullet(2, HBt_Def, 1, false)
+Ws:AddBullet(2, HBt_Def, 3, false)
+
+Ws:PushOrder(2, 1)
+Ws:PushOrder(2, 3)
+
+--Level 3
+Ws:AddBullet(3, Bt_Def, -1, false)
+Bt_Def = BulletDef(Bt_Def)
+Bt_Def.Velocity = Vector(-2 , 20, 0)
+Ws:AddBullet(3, Bt_Def, -1, false)
+Bt_Def.Velocity = Vector(2 , 20, 0)
+
+Ws:AddBullet(3, Bt_Def, -1, false)
+Ws:AddBullet(3, HBt_Def, 1, false)
+Ws:AddBullet(3, HBt_Def, 3, false)
+
+Ws:PushOrder(3, 1)
+Ws:PushOrder(3, 3)
+
+--Level 4
+Bt_Def.Velocity = Vector(0, 20, 0)
+Ws:AddBullet(4, Bt_Def, -1, false)
+Bt_Def.Velocity = Vector(-2, 20, 0)
+Ws:AddBullet(4, Bt_Def, -1, false)
+Bt_Def.Velocity = Vector(2, 20, 0)
+Ws:AddBullet(4, Bt_Def, -1, false)
+
+Ws:AddBullet(4, HBt_Def, 0, false)
+Ws:AddBullet(4, HBt_Def, 1, false)
+Ws:AddBullet(4, HBt_Def, 2, false)
+Ws:AddBullet(4, HBt_Def, 3, false)
+
+Ws:PushOrder(4, 0)
+Ws:PushOrder(4, 1)
+Ws:PushOrder(4, 2)
+Ws:PushOrder(4, 3)
+
+--Bomb
+
+Ws.HoldInPlace = false
+Ws.PlayerDash = false
+Ws.DashSpeed = Vector(0,0,0)
+BombDef = BulletDef()
+BombDef.TexID = Ws:AddImage('Textures/Bullet/BigShot.png')
+BombDef.TexWidth = 64
+BombDef.Color = 0
+BombDef.HitBox = 32
+BombDef.Velocity = Vector(0, 0, 0)
+BombDef.Damage = 70
+BombDef.Spin = false
+BombDef.Homing = true
+BombDef.Mass = 100000
+
+index = 0
+repeat
+BombDef.Color = math.random(0,7)
+BombDef.Velocity = Vector(0, 10 - index, 0)
+Ws:AddBombParts(BombDef)
+
+BombDef.Velocity = Vector(-5+index, 10 - index, 0)
+Ws:AddBombParts(BombDef)
+
+BombDef.Velocity = Vector(5-index, 10 - index, 0)
+Ws:AddBombParts(BombDef)
+index = index + 1
+until index == 2
+
+Ws:Finalize()

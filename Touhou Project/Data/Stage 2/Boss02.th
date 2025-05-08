@@ -1,0 +1,122 @@
+
+
+
+
+
+function SecondBoss()
+		local BossCRY = EnemyScript()
+		local NumEnmy = 0
+		local MassFire = true
+		local HpPercentageLimit = 90
+		local HeavenSAke = true
+		local g_DEATH = true 
+		local SkyLimit = 10	
+		BossCRY:AddEnemy(ChenID, Vector(0,0,0), 20, 0) 
+		NumEnmy = NumEnmy + 1
+		BossCRY:AddEnemy(ChenID, Vector(100,230,0), 128	, 3000) 
+		BossCRY:AddEnemy(YuKariID, Vector(0,230,0), 128, 3000) 
+		BossCRY:AddEnemy(RanID, Vector(-100,230,0), 128, 3000) 
+		
+		BossCRY:AddToEngine(false, NumEnmy)
+		BossCRY:AddToEngine(false, NumEnmy+1)
+		BossCRY:AddToEngine(false, NumEnmy+2)
+		
+		BossCRY:AddAccel(Vector(0, -5,0), NumEnmy)
+		BossCRY:AddAccel(Vector(0, -3,0), NumEnmy+1)
+		BossCRY:AddAccel(Vector(0, -5,0), NumEnmy+2)
+		
+		BossCRY:AddToControl(NumEnmy - 1, NumEnmy)
+		BossCRY:AddToControl(NumEnmy - 1, NumEnmy+1)
+		BossCRY:AddToControl(NumEnmy - 1, NumEnmy+2)
+		BossCRY:LifebarSetup(NumEnmy - 1)
+		
+		BossCRY:SetHover(NumEnmy)
+		BossCRY:SetHover(NumEnmy+1)
+		BossCRY:SetHover(NumEnmy+2)
+		
+		while g_DEATH == true do 
+		if BossCRY:getpercent(NumEnmy-1) < HpPercentageLimit then
+				BossCRY:GoToPosition(Vector(-100,150,0), NumEnmy)
+				BossCRY:GoToPosition(Vector(0,100,0), NumEnmy+1)
+				BossCRY:GoToPosition(Vector(100,150,0), NumEnmy+2)
+				HpPercentageLimit = HpPercentageLimit - 10
+				Fusion(Vector(), 2, BallID, 27, TransID, 62)
+				
+		elseif BossCRY:getpercent(NumEnmy-1) > 90 then
+			   if MoveLeft == true then
+					BossCRY:AddAccel(Vector(-2,0,0), NumEnmy)
+					BossCRY:AddAccel(Vector(2,0,0), NumEnmy+2)
+					MoveLeft = false
+					Wait(1500)
+					TwiddleShot(BossCRY:getposition(NumEnmy), 0, -1, 2, KunaiID, 0, 12, KunaiID, 2, 12, 2, 1.2)
+				else
+					BossCRY:AddAccel(Vector(-2,0,0), NumEnmy+2)
+					BossCRY:AddAccel(Vector(2,0,0), NumEnmy)
+					MoveLeft = true
+					Wait(1500)
+					TwiddleShot(BossCRY:getposition(NumEnmy+2), 0, -1, 2, KunaiID, 0, 12, KunaiID, 2, 12, 2, 1.2)
+				end
+
+		elseif BossCRY:getpercent(NumEnmy-1) > 80 then
+				--BossCRY:GoToPosition(Vector(150, 100,0), NumEnmy)
+				--BossCRY:GoToPosition(Vector(-150, -100,0), NumEnmy+2)
+				BossCRY:GoToPosition(Vector(0, -0,0), NumEnmy+1)
+				Wait(5000)
+				KillerDoll(Vector(0, -0,0), 2, DaggerID_1, 2, 16)
+				
+		elseif BossCRY:getpercent(NumEnmy-1) > 70 then
+		
+			while SkyLimit > 0 do
+				BossCRY:AddAccel(Vector(0, 1,0), NumEnmy)
+				BossCRY:AddAccel(Vector(0, 1,0), NumEnmy+2)
+				Wait(3000)
+				CrossShot(BossCRY:getposition(NumEnmy+2), 5, 2, 45, KunaiID, 2, 12)
+				CrossShot(BossCRY:getposition(NumEnmy+1), 5, 2, 45, KunaiID, 2, 12)
+				CrossShot(BossCRY:getposition(NumEnmy+2), 5, 2, 45, KunaiID, 2, 12)	
+				SkyLimit = SkyLimit - 1 
+			end
+			
+			while SkyLimit < 10 do
+				BossCRY:AddAccel(Vector(0,-1,0), NumEnmy)
+				BossCRY:AddAccel(Vector(0,-1,0), NumEnmy+2)
+				Wait(3000)
+				SkyLimit = SkyLimit + 1 
+			end
+		
+		
+		elseif BossCRY:getpercent(NumEnmy-1) > 60 then
+				
+				BossCRY:GoToPosition(Vector(-150, 100,0), NumEnmy)
+				BossCRY:GoToPosition(Vector( 150, -100,0), NumEnmy+2)
+				
+				if BossCRY:CheckStatus(NumEnmy) == false then 
+				Circular(BossCRY:getposition(NumEnmy), 100, 2, KunaiID, 2, 12) else end
+				if BossCRY:CheckStatus(NumEnmy+1) == false then 
+				Circular(BossCRY:getposition(NumEnmy+1), 100, 2, KunaiID, 2, 12)else end
+				if BossCRY:CheckStatus(NumEnmy+2) == false then 
+				Circular(BossCRY:getposition(NumEnmy+2), 100, 2, KunaiID, 2, 12)else end
+				
+				Wait(5000)
+		elseif BossCRY:getpercent(NumEnmy-1) > 50 then
+				RollShotTask(BossCRY:getposition(NumEnmy), 1, 2, 0, KunaiID, 7, 12, KunaiID, 2, 12)
+				Wait(3000)
+				RollShotTask(BossCRY:getposition(NumEnmy+1), 1, 2, 0, KunaiID, 7, 12, KunaiID, 2, 12)
+				Wait(3000)
+				RollShotTask(BossCRY:getposition(NumEnmy+2), 1, 2, 0, KunaiID, 7, 12, KunaiID, 2, 12)
+				Wait(3000)
+		
+		elseif BossCRY:getpercent(NumEnmy-1) > 0 then
+				SpreadShot(BossCRY:getposition(NumEnmy), math.random(0,5), 1.5, nAngle, KunaiID, 4, 27, 6, 0.6)
+				SpreadShot(BossCRY:getposition(NumEnmy+1), math.random(0,5), 1.5, nAngle, KunaiID, 4, 27, 6, 0.6)
+				SpreadShot(BossCRY:getposition(NumEnmy+2), math.random(0,5), 1.5, nAngle, KunaiID, 4, 27, 6, 0.6)
+				Wait(3000)
+				ChainShot(Vector(), 1, KunaiID, 0, 12, 3, 1.2)
+				
+		else 
+		g_DEATH = false;
+		Wait(5000)
+		end
+		end 
+end
+
+

@@ -1,0 +1,59 @@
+-- This shot tries to push the player to the centre of the map.
+-- This shot uses Round_1.png for its bullet
+function PushCentreShot(Position, PlayerPos, nAngle, nAssign, Level, TexID, TexWidth, Max_Color, Min_Color)
+	Wave = BulletWave()
+	local Shot = BulletDef()
+	local nNum = Level
+	local nWay = 5
+	local nWayAngle = 360 / nWay
+	local nNumAngle = 8 * nAssign
+
+	Shot.Velocity = Vector(0, 1, 0)
+	Shot.HitBox = 100.0
+	Shot.TexID = TexID
+	Shot.TexWidth = TexWidth
+
+
+	for index2 = 0, nNum do
+		local _Angle = nAngle
+		Shot.Acceleration = PlayerPos:Normalize() * 0.475
+
+		for index3 = 0, nWay do
+
+			-- Inverted formula 1
+			Shot.Color = math.random(Max_Color, Min_Color)
+
+			Shot.Angle = _Angle * math.pi / 180
+			Shot.Position.x = PlayerPos.x + 150 * math.cos( _Angle * math.pi / 180 )
+			Shot.Position.y = PlayerPos.y + 150 * math.sin( _Angle * math.pi / 180 )
+
+			Wave:AddBullet(Shot)
+
+
+			-- Inverted formula 2
+			Shot.Color = math.random(Max_Color, Min_Color)
+
+			Shot.Angle = _Angle * math.pi / -180
+			Shot.Position.x = PlayerPos.x + 150 * math.sin( _Angle * math.pi / 180 )
+			Shot.Position.y = PlayerPos.y + 150 * math.cos( _Angle * math.pi / 180 )
+
+			Wave:AddBullet(Shot)
+
+			_Angle = _Angle + nWayAngle
+
+			-- Enemy shot
+			Shot.Acceleration = (PlayerPos - Position):Normalize() * 0.5
+			Shot.Position = Position
+			Shot.Angle = _Angle * math.pi / 180
+
+			Wave:AddBullet(Shot)
+
+		end
+
+		Wave:ThrowInAll()
+		Wave:ReleaseAll()
+
+		nAngle = nAngle - nNumAngle;
+	end
+
+end

@@ -1,0 +1,149 @@
+function CrossEnemy()
+	local EWave = EnemyWave()
+	
+	for index = 1, 20 do
+		EWave:AddEnemy(Enemy, 32, 32, 20, math.random(0, 2))
+	end
+	
+	for index = 0, 9 do
+		EWave:SetPosition(index, Vector( 150, 260, 0))
+		EWave:SetPosition(index + 10, Vector( -150, 260, 0))
+		EWave:SetVelocity(index, Vector( -10 + index, -20 + index, 0))
+		EWave:SetVelocity(index + 10, Vector( 10 - index, -20 + index, 0))
+	end
+	EWave:ThrowInAll()
+	Wait(100)
+	
+	for index = 0, EWave:Size() - 1 do
+		if EWave:GetHP(index) > 0 then
+			SpreadShot(EWave:GetPosition(index), 2, 1, 15, BallID, 4, 27, 6, 0.6)
+			PlaySFX(ShotSFX01)
+			Wait(50)
+		end
+	end
+	
+	EWave:ThrowInAll()
+	EWave:ReleaseAll()
+end
+
+
+function StraightMarch()
+	local EWave = EnemyWave()
+	for index = 1, 20 do
+		EWave:AddEnemy(Enemy, 32, 32, 20, math.random(0, 2))
+	end
+	
+	for index = 0, 19 do
+		EWave:SetPosition(index, Vector( -150, 260, 0))
+		EWave:SetVelocity(index, Vector(0, -20, 0))
+	end
+	
+	Wait(500)
+	
+	for index = 0, 19 do
+		EWave:ThrowFromList(index)
+		Wait(30)
+	end
+	
+	for index = -19, 0 do
+		PlaySFX(ShotSFX01)
+		SpreadShot(EWave:GetPosition(-index), 0.5, 1, 23, DaggerID_1, 6, 16, 2.0, 1.4)
+		Wait(40)
+	end
+	EWave:ReleaseAll()
+	
+	for index = 1, 20 do
+		EWave:AddEnemy(Enemy, 32, 32, 50, math.random(0, 2))
+	end
+	
+	for index = 0, 19 do
+		EWave:SetPosition(index, Vector( 150, 260, 0))
+		EWave:SetVelocity(index, Vector(0, -20, 0))
+	end
+	
+	Wait(500)
+	
+	for index = 0, 19 do
+		EWave:ThrowFromList(index)
+		Wait(30)
+	end
+	
+	for index = -19, 0 do
+		PlaySFX(ShotSFX01)
+		SpreadShot(EWave:GetPosition(-index), 0.5, 1, 23, DaggerID_1, 6, 16,  2.0, 1.4)
+		Wait(40)
+	end
+	EWave:ReleaseAll()
+end
+
+function Solo(Horizon)
+	local EWave = EnemyWave()
+	
+	EWave:AddEnemy(Enemy, 32, 32, 400, math.random(0, 2))
+	EWave:SetPosition(0, Vector(Horizon, 260, 0))
+	EWave:SetVelocity(0, Vector(0, -10, 0))
+	
+	EWave:ThrowInAll()
+	
+	local Degree = 0
+	
+	Wait(150)
+	EWave:SetVelocity(0, Vector(0, -2, 0))
+	while EWave:GetHP(0) > 0 do
+		PlaySFX(ShotSFX01)
+		CrossShot(EWave:GetPosition(0), 3, 6, Degree,  DaggerID_2, 5, 16, 2.0, 1.4)
+		PlaySFX(ShotSFX03)
+		SpreadShot(EWave:GetPosition(0), 10, -0.01, Degree, DaggerID_2, 0, 16, 2.0, 1.4)
+		Degree = Degree + math.random(0, 180)
+		Wait(100)
+	end
+	
+	EWave:ReleaseAll()
+end
+
+function CurveDown(Assign)
+	local EWave = EnemyWave()
+	
+	for index = 0, 9 do
+		EWave:AddEnemy(Enemy, 32, 32, 50, math.random(0, 2))
+		EWave:SetPosition(index, Vector(230 * Assign, 240, 0))
+		EWave:SetVelocity(index, Vector(10 * -Assign, -6, 0))
+	end
+	
+	Wait(200)
+	for index = 0, 9 do
+		EWave:ThrowFromList(index)
+		Wait(100)
+	end
+	
+	for index = -9, 0 do
+		if EWave:GetHP(-index) > 0 then
+			PlaySFX(ShotSFX02)
+			CrossShot(EWave:GetPosition(-index), 4, 6, 14,  DiamondID, math.random(0, 8), 8, 1.0, 1.4)
+		end
+	end
+	EWave:ReleaseAll()
+end
+
+function LastEnemy()
+	local EWave = EnemyWave()
+	
+	EWave:AddEnemy(Enemy, 32, 32, 400, math.random(0, 2))
+	EWave:SetPosition(0, Vector(0, 260, 0))
+	EWave:SetVelocity(0, Vector(0, -10, 0))
+	
+	EWave:ThrowInAll()
+	
+	local Degree = 0
+	
+	Wait(150)
+	EWave:SetVelocity(0, Vector(0, -2, 0))
+	while EWave:GetHP(0) > 0 do
+		PlaySFX(ShotSFX04)
+		RollShotTask(EWave:GetPosition(0), 1, 2, 0, KunaiID, 7, 12, KunaiID, 2, 12)
+		Degree = Degree + math.random(0, 180)
+		Wait(100)
+	end
+	
+	EWave:ReleaseAll()
+end

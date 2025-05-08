@@ -1,0 +1,64 @@
+function KillerDoll(Position, Level, TexID_1, Color_1, TexWidth_1)
+
+	local Wave = BulletWave()
+	local Shot = BulletDef()
+	local btNum = 30 + 30 * Level
+	local Delay = 10
+
+	Shot.TexID = TexID_1
+	Shot.Color = Color_1
+	Shot.TexWidth = TexWidth_1
+	Shot.HitBox = 4
+	Shot.Mass = 100000
+	Shot.EnableBounce = true
+	Shot.BounceTimes = Level
+	local Spread = (math.pi * 2) / (30 + 15 * Level) 
+	
+	local Degree = 0
+	while Degree < math.pi * 2 do
+		Shot.Position.x = Position.x + 100 * math.sin(Degree)
+		Shot.Position.y = Position.y + 100 * math.cos(Degree)
+		Wave:Throw(Shot)
+		Wait(30)
+		Degree = Degree + Spread
+	end
+	
+	for index = 0, 30 * Level do
+		Shot.Position.x = math.random(-100,100) + Position.x
+		if Shot.Position.x < 100 and Shot.Position.x > 50 then
+			Shot.Position.x = Shot.Position.x + 100
+		else 
+			if Shot.Position.x > -100 and Shot.Position.x < -50 then
+			Shot.Position.x = Shot.Position.x - 100
+			end
+		end
+		Shot.Position.y = math.random(-80,80) + Position.x 
+		Wave:Throw(Shot)
+		Wait(20)
+	end
+	
+	Wait(500)
+	local Timer = 0
+	local Pos = Vector()
+	local Vel = Vector()
+	local Angle = 0
+	
+	for Timer = 0, 100 do
+		for index = 0, Wave:Size() - 1 do
+			Pos = Wave:GetPosition(index)
+			Vel = Pos - GetPlayerPosition()
+			Angle = Vel:AngleBewteenVector(Vector(0, 1, 0))
+			Wave:SetAngle(index, math.pi-Angle)
+		end
+	end
+	
+	for index = 0, Wave:Size() - 1 do
+		Pos = Wave:GetPosition(index)
+		Vel = (GetPlayerPosition() - Pos):Normalize() * 0.1
+		Wave:SetAcceleration(index, Vel)
+		Wait(20)
+	end
+	
+	--Wave:ThrowInAll()
+	Wave:ReleaseAll()
+end

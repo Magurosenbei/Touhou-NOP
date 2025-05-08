@@ -1,0 +1,19 @@
+--Marisa
+P = Player('Marisa')
+P:DefineImage('Textures/Character/Player/Marisa/Marisa_Player.png')
+P:DefineShotSFX('Audio/SFX/Player_Shot.wav')
+P:DefineSpeed(4.0, 2.0)
+
+P:AddWeaponFilePath('Data/Player/Weapon_03.th')
+P:AddWeaponFilePath('Data/Player/Weapon_04.th')
+
+P:AddCutinPath('Textures/Character/Player/Marisa/Marisa.png')
+P:AddCutinPath('Textures/Character/Player/Marisa/Marisa2.png')
+P:AddCutinPath('Textures/Character/Player/Marisa/Marisa3.png')
+P:AddCutinPath('Textures/Character/Player/Marisa/Marisa4.png')
+P:AddCutinPath('Textures/Character/Player/Marisa/Marisa5.png')
+P:AddCutinPath('Textures/Character/Player/Marisa/Marisa6.png')
+P:AddCutinPath('Textures/Character/Player/Marisa/Marisa7.png')
+P:AddCutinPath('Textures/Character/Player/Marisa/Marisa8.png')
+P:AddCutinPath('Textures/Character/Player/Marisa/Marisa9.png')
+

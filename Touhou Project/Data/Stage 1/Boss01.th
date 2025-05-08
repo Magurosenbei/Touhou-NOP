@@ -1,0 +1,45 @@
+
+function FirstBoss()
+local BossY = EnemyScript()
+local NumEnemy = 0
+local g_hold = true
+local g_temp = 0
+local g_counter = 0 
+
+	BossY:AddEnemy(YukaID, Vector(0,230,0), 128, 3000)
+	BossY:AddToEngine(false, NumEnemy)
+	BossY:AddAccel(Vector(0,-3,0),NumEnemy)
+	BossY:LifebarSetup(NumEnemy)
+	
+	while g_hold do 
+		if BossY:getpercent(NumEnemy) > 0 then
+			if g_temp == 0 then
+				g_counter = 0
+				BossY:AddAccel(Vector(3,-3,0),NumEnemy)
+				ChainShot(BossY:getposition(NumEnemy), 1, KunaiID, 0, 12, 3, 1.2)
+				Wait(5000)
+				g_temp = g_temp + 1
+			elseif g_temp == 1 then
+				BossY:AddAccel(Vector(-3,0,0),NumEnemy)
+				RollShotTask(BossY:getposition(NumEnemy), 1, 2, 0, KunaiID, 7, 12, KunaiID, 2, 12)
+				Wait(5000)
+				g_temp = g_temp + 1
+			elseif g_temp == 2 then
+				BossY:GoToPosition(Vector(0,50,0), NumEnemy)
+				CrossShot(BossY:getposition(NumEnemy), 5, 2, 45, KunaiID, 2, 12, 2, 1)
+				Wait(5000)
+				BossY:AddAccel(Vector(),NumEnemy)
+				--BossY:ChangePosition(NumEnemy,Vector(0,200,0))
+				g_temp = g_temp + 1
+			else
+				g_temp = 0 end
+		
+		else	
+		g_hold = false
+		end
+	end
+	Wait(1000)
+end	
+		
+	
+	

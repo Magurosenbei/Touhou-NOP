@@ -1,0 +1,80 @@
+Places that you can modify:
+
+Character
+Bullet
+Engine
+Manager
+Standard Object Abstract
+Point Object
+Texture
+Camera
+GamePlay
+Noise Generator
+
+Resource Files --- This you can change the ico file, draw anything you want >.< just don't touch the code file in it
+
+Other Places that are best left untouched:
+Windows Main
+Header Files
+Source Files
+
+
+------------------------------------------
+
+Things that inherits singleton please use the class name :: Instance() instead of new operator
+It is best if variables of the item is a pointer
+eg. Player * P1;
+	P1 = &Player :: GetInstance();	// this is to convert the instance returned as a pointer to fit in
+	
+All Sprites / Texture must be created via Resource Manager (Gobal) to prevent PF usage from getting too high.
+To get Time details, use the Time Frame Manager (Gobal)
+
+*************************************
+Things need to fixed:
+Interface class			(Fix Selection, X button and character selection, SFX of selection for mouse and keyboard)
+Audio Engine			(cannot replace segments and seems to have to do in main)
+
+To Be Done:
+WeatherSystem			--	throw out acceleration vector, link up with all objects
+Stage					--	"Wrapper kind of thing" new filter
+Bullet Wave				--	"New class" With list + release capability to prevent memo leak
+Separate Stage Process	--	do in engine.cpp
+HUD						--	do in interface, have to have wind direction indication/ symbols and font
+WeaponScripts			--	Complete another 2 weapon
+Point Objects			--  finish up quickly (requires another list depending on situation)
+Font					--	Fix this as quickly as possible
+Enemy/Boss				--	High Pirority
+GamePlay System			--	finish up script and such
+
+
+Completed:
+Win Api				
+Noise Generator		
+Engine				
+	
+Texture				(Fixed)
+Audio Engine		(Needs fixes)	
+Vector Mathematics	
+In-Game Mouse		
+Player				(Reimu and Marisa Character Definiation Completed)	
+WeaponScript		(Weapon_01 and 02 completed)
+
+Updates:
+Bookmark your changes in the file by commenting //BOOKMARK// at changed portion and the top of the file.
+
+Please write down what is changed here (File Name and bookmark in it)
+--------------------------------------
+2008 June 12	--- FrameWork Set up ready for development
+2008 June 24    ---	Added Gameplay filter for GamePlay Logic Managing
+2008 June 28	---	Changed for 3D enviroment; Prevent re-Init of all essencitials when CreateWindow(...) is called
+2008 July 5		---	Added Noise Generator
+2008 July 8		---	Vector Rotation function, see Vector.h (Put in point of rotation origin and angle(radians) to rotate)
+2008 July 11	--- Added WeaponScript in Player Filter, Changes made to Engine.cpp, boss.cpp, bullet.cpp
+2008 July 15	--- Added AngleBetweenVectors function in vector.h
+2008 July 17	--- Changed OpenAl to DirectSound. Remove Vorbis, ogg, openal files. Included and linked up DirectSound. WeaponScript.h and .cpp added to Player Filter for scripting.
+2008 July 18	---	Implemented Homming Bullets (engine.cpp) Remove Audio Thread. Object Abstract changed to take in targets pointers.
+2008 July 25	--- Updated WeaponScript in Player Filter, Added Prevention of Access to forbidden memory (engine.cpp). Added PowerStage calculation in GamePlay. Added PointObjects. Changed Windows to un-Resizable. Added InGame Mouse.
+2008 July 31	--- Updated Audio Engine, Weapon script made to fit in script fuctions, updated in-game mouse with restriction, added AI for boss.
+2008 August 1	---	Flatten Game into 2D, added HUD overlay. Included Sprites for use later (in texture folder)
+2008 August 13	---	Covert Tga loader to all png, includes drawxy for pixels, usage with luabind up. Mouse returns. Factory and object pool mode for bullet lists.
+2008 August 15	---	Changed Texture Loader to build files in Main, Weapon 01 and Weapon 02, Reimu and marisa character completed.

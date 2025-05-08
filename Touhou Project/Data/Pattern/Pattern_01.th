@@ -1,0 +1,44 @@
+function ChainShot(Position, Level, TexID_1, Color_1, TexWidth_1, HitBox, Scale)
+	
+	local Wave = BulletWave()
+	local Shot = BulletDef()
+	
+	Shot.Position = Position
+	Shot.HitBox = HitBox
+	Shot.Scale = Scale
+	
+	Shot.TexID = TexID_1
+	Shot.Color = Color_1
+	Shot.TexWidth = TexWidth_1
+
+	Velocity = Vector(0, 10, 0)
+	
+	Position = GetPlayerPosition()
+	
+	for count = 0, Level * 10 do
+		if GetPlayerPosition().x < 0 then
+			Shot.Position = Vector(-240, Position.y + HitBox + 12, 0)
+			Shot.Velocity = Vector(10, 0, 0)
+		else 
+			Shot.Position = Vector(240, Position.y + HitBox + 12, 0)
+			Shot.Velocity = Vector(-10, 0, 0)
+		end
+		Wave:Throw(Shot)
+		Shot.Position.y = Shot.Position.y - (HitBox + 12) * 2
+		Wave:Throw(Shot)
+		
+		if GetPlayerPosition().y < 0 then
+			Shot.Position = Vector(Position.x + HitBox + 12, -270, 0)
+			Shot.Velocity = Vector(0, 10, 0)
+		else 
+			Shot.Position = Vector(Position.x + HitBox + 12, 270, 0)
+			Shot.Velocity = Vector(0, -10, 0)
+		end
+		Wave:Throw(Shot)
+		Shot.Position.x = Shot.Position.x - (HitBox + 12) * 2
+		Wave:Throw(Shot)
+		Wait(100 / Level)
+	end
+	
+	Wave:ReleaseAll()
+end

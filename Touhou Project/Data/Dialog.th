@@ -1,0 +1,163 @@
+
+-- Always remember to use the following two functions when you want to add
+-- add dialogs: StartDialogSession() and EndDialogSession()
+-- There is no telling what will happen if you don't.
+
+-- AddDialogMessage takes in the texture you're referring to and
+-- the message you want to say. You can always use DIALOG_CURR_PLAYER
+-- defined in StageEntry.th to get the current player's set that is in
+-- action.
+
+-- Always remember not to use GetCurrentPlayer() all the time, because
+-- it is pretty slow at finding whats the current player. Instead,
+-- define it as a variable for you to reference.
+
+
+-- Dialog Main Functions
+function Stage1_BossDialog()
+
+	StartDialogSession()
+
+	if DIALOG_CURR_PLAYER == Dialog_Player1 then Stage1_Player1_BossDialog()
+	elseif DIALOG_CURR_PLAYER == Dialog_Player2 then Stage1_Player2_BossDialog()
+	end
+
+	EndDialogSession()
+
+end
+
+
+
+function Stage2_BossDialog()
+
+	StartDialogSession()
+
+	if DIALOG_CURR_PLAYER == Dialog_Player1 then Stage2_Player1_BossDialog()
+	elseif DIALOG_CURR_PLAYER == Dialog_Player2 then Stage2_Player2_BossDialog()
+	end
+
+	EndDialogSession()
+
+end
+
+
+
+-- Stage 1
+function Stage1_Player1_BossDialog()
+
+	AddDialogMessage(Dialog_Marisa,
+		"Hmm... The presence of evil is getting ever stronger! When will we ever stop it?")
+
+	AddDialogMessage(Dialog_Yuka,
+		"My oh my, the daylight is drawing closer! Let's destroy this last village!")
+
+	AddDialogMessage(Dialog_Marisa_Serious2,
+		"Hey! Who are you? Are you a demon?")
+
+	AddDialogMessage(Dialog_Yuka_NoWay,
+		"Of course I am! Are you blind?")
+
+	AddDialogMessage(Dialog_Marisa_Wth,
+		"Okay..")
+
+end
+
+
+
+function Stage1_Player2_BossDialog()
+
+	AddDialogMessage(Dialog_ReimuR,
+		"Hmm... The presence of evil is getting ever stronger! When will we ever stop it?")
+
+	AddDialogMessage(Dialog_Yuka,
+		"My oh my, the daylight is drawing closer! Let's destroy this last village!")
+
+	AddDialogMessage(Dialog_ReimuR_Serious,
+		"Hey! Who are you? Are you a demon?")
+
+	AddDialogMessage(Dialog_Yuka_NoWay,
+		"Of course I am! Are you blind?")
+
+	AddDialogMessage(Dialog_ReimuR_Okay,
+		"Okay..")
+
+end
+
+
+
+-- Stage 2
+function Stage2_Player1_BossDialog()
+
+	-- Player Intro
+	AddDialogMessage(Dialog_Marisa,
+		"I can sense the presence of an evil being!")
+	AddDialogMessage(Dialog_Marisa_Serious,
+		"It appears that it is a magical demon that has haunted our ancestors!")
+	AddDialogMessage(Dialog_Marisa_Serious2,
+		"Villagers run for your lives! I will deal with the demon!!!!")
+
+	-- Enemy Intro
+	AddDialogMessage(Dialog_Ran,
+		"Muahahaha! I am the nine-tailed fox! Nice to meet you!")
+	AddDialogMessage(Dialog_Yukari_Smile,
+		"Let's get the ball rolling on your town, shall we?")
+	AddDialogMessage(Dialog_Chen,
+		"Don't forget me! I am sooo kawaii!")
+
+	-- Rebuttal
+	AddDialogMessage(Dialog_Marisa_Wth,
+		"Lamer! You think you can defeat me? Fat hope!")
+	AddDialogMessage(Dialog_Marisa_Serious2,
+		"You better say your prayers before I..")
+
+	-- Conclusion
+	AddDialogMessage(Dialog_Yukari_Cry,
+		"*prays* Okay okay, I'm really sorryyy..")
+	AddDialogMessage(Dialog_Yukari,
+		"Haha, as if I'm sorry! You'll be owned by my lovely dovely tail!")
+
+	AddDialogMessage(Dialog_Marisa_Haiz,
+		"Sad... It seems they are not even repentent of their ways! Anyways, I will make sure they are sent to the depths of the eternal fire! Please grant me your strength!")
+
+end
+
+
+
+function Stage2_Player2_BossDialog()
+
+	-- Player Intro
+	AddDialogMessage(Dialog_ReimuR,
+		"I am on my journey to destroy all the demons that I meet!")
+	AddDialogMessage(Dialog_ReimuR,
+		"It's a difficult job, but someone has got to do it, ya know?")
+	AddDialogMessage(Dialog_ReimuR_Teary,
+		"I just wish I could save my village from their evil ways.. Sobx!")
+
+	-- Enemy and Player Talk
+	AddDialogMessage(Dialog_Chen,
+		"Hoho, save what? Today we shall destroy you! Do you know what I am capable of?")
+
+	AddDialogMessage(Dialog_ReimuR_Serious,
+		"Omg! You are the demon who attacked my village! Today I shall get my revenge! Muahaha!")
+
+	AddDialogMessage(Dialog_Ran,
+		"Lawl. Do you think you can defeat the three of us? With your current strength, you have zero chance of defeating the great masters of the demon realm!")
+	AddDialogMessage(Dialog_Yukari_Smile,
+		"Yeah! You're just a newbie in the art of magic! What have you accomplished anyway?")
+
+	-- Rebuttal
+	AddDialogMessage(Dialog_Marisa,
+		"Before you say anything, don't forget me - The Kami of Speed!")
+	AddDialogMessage(Dialog_ReimuR_Teary,
+		"Thanks Marisa, you are a great help! But I don't need your help! Sorry! Maybe next time, when we upgrade the game or something!")
+	AddDialogMessage(Dialog_Marisa_Smile2,
+		"Okay, good luck then! We'll meet on the road again!")
+
+	-- Conclusion
+	AddDialogMessage(Dialog_Yukari,
+		"Oi! Oi! People talking to you, don't ignore us!")
+
+	AddDialogMessage(Dialog_ReimuR_Okay,
+		"Whatever! I shall defeat you in the name of Reimu - The Red!")
+
+end

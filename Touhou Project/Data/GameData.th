@@ -1,0 +1,17 @@
+GS = GameSystem()
+
+GS.DefaultLife = 2
+GS.DefaultBomb = 2
+GS.LifePlus = 1
+GS.BombPlus = 1
+GS.PointPlus = 100
+GS.SmallPowerPlus = 3
+GS.BigPowerPlus = 5
+GS.BombTimer = 6
+GS.GodModeTimer = 7
+GS.PowerStage = 0
+GS.GrazeRadius = 32
+
+GS:AddPlayerPath('Data/Player/Player_01.th')
+GS:AddPlayerPath('Data/Player/Player_02.th')
+GS:FinaliseData()

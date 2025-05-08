@@ -1,0 +1,39 @@
+function TwiddleShot(Position, nAngle, nAssign, Level, TexID_1, Color_1, TexWidth_1, TexID_2, Color_2, TexWidth_2, HitBox, Scale)
+	Wave = BulletWave()
+	local Shot = BulletDef()
+	local nNum = 40 + 20 * Level
+	local nWay = 4
+	local SpeedIncrement = 0.01
+	local nWayAngle = 360 / nWay
+	local nNumAngle = 5.8 * nAssign
+	Shot.Position = Position
+	Shot.Velocity = Vector(0, 1, 0)
+	Shot.Scale = Scale
+	Shot.HitBox = HitBox
+	local nDelay = 30;
+
+	for index2 = 0, nNum do
+		local _Angle = nAngle
+
+		for index3 = 0, nWay do
+			local _ChoseTex = math.fmod(index3, 2)
+			if _ChoseTex == 0 then
+				Shot.TexID = TexID_1
+				Shot.Color = Color_1
+				Shot.TexWidth = TexWidth_1
+			else
+				Shot.TexID = TexID_2
+				Shot.Color = Color_2
+				Shot.TexWidth = TexWidth_2	
+			end
+			Shot.Angle = _Angle * math.pi / 180
+			Wave:AddBullet(Shot)
+			_Angle = _Angle + nWayAngle
+		end
+		Wave:ThrowInAll()
+		Wait(nDelay)
+		Wave:ReleaseAll()
+		Shot.Velocity.y = Shot.Velocity.y + SpeedIncrement;
+		nAngle = nAngle + nNumAngle;
+	end
+end

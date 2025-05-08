@@ -1,0 +1,12 @@
+--Reimu
+P = Player('Reimu')
+P:DefineImage('Textures/Character/Player/Reimu/Reimu_Player.png')
+P:DefineShotSFX('Audio/SFX/Player_Shot.wav')
+P:DefineSpeed(2.5, 1.0)
+P:AddWeaponFilePath('Data/Player/Weapon_01.th')
+P:AddWeaponFilePath('Data/Player/Weapon_02.th')
+
+P:AddCutinPath('Textures/Character/Player/Reimu/ReimuR.png')
+P:AddCutinPath('Textures/Character/Player/Reimu/ReimuR2.png')
+P:AddCutinPath('Textures/Character/Player/Reimu/ReimuR3.png')
+P:AddCutinPath('Textures/Character/Player/Reimu/ReimuR4.png')

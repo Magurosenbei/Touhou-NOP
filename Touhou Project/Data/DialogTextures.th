@@ -1,0 +1,45 @@
+
+-- AddDialogSet defines whether the texture appears left or right.
+-- These can be set the via DIALOG_RIGHT and DIALOG_LEFT globals.
+-- It is also used to get the current player for the texture.
+-- Each set is also taken as 1 character. And every additional
+-- set defines additional dialog characters. Each character can
+-- stack up against each other for maximum dialog effect.
+
+-- AddDialogTexture takes the texture file path relative to the
+-- texture directory. It also returns the ID for you to refer to
+-- that texture from now on.
+
+
+-- Player side dialogs
+Dialog_Player1 = AddDialogSet(DIALOG_LEFT) -- We define Marisa as Player 1
+Dialog_Marisa = AddDialogTexture('Character/Player/Marisa/Marisa.png')
+Dialog_Marisa_Smile = AddDialogTexture('Character/Player/Marisa/Marisa2.png')
+Dialog_Marisa_Smile2 = AddDialogTexture('Character/Player/Marisa/Marisa3.png')
+Dialog_Marisa_Serious = AddDialogTexture('Character/Player/Marisa/Marisa4.png')
+Dialog_Marisa_Serious2 = AddDialogTexture('Character/Player/Marisa/Marisa5.png')
+Dialog_Marisa_Haiz = AddDialogTexture('Character/Player/Marisa/Marisa6.png')
+Dialog_Marisa_Haiz2 = AddDialogTexture('Character/Player/Marisa/Marisa7.png')
+Dialog_Marisa_Wth = AddDialogTexture('Character/Player/Marisa/Marisa8.png')
+Dialog_Marisa_Oh = AddDialogTexture('Character/Player/Marisa/Marisa9.png')
+
+Dialog_Player2 = AddDialogSet(DIALOG_LEFT) -- We define Reimu as Player 2
+Dialog_ReimuR = AddDialogTexture('Character/Player/Reimu/ReimuR.png')
+Dialog_ReimuR_Okay = AddDialogTexture('Character/Player/Reimu/ReimuR2.png')
+Dialog_ReimuR_Serious = AddDialogTexture('Character/Player/Reimu/ReimuR3.png')
+Dialog_ReimuR_Teary = AddDialogTexture('Character/Player/Reimu/ReimuR4.png')
+
+
+-- Enemy side dialogs
+AddDialogSet(DIALOG_RIGHT)
+Dialog_Chen = AddDialogTexture('Character/Boss/Yakumo/Chen.png')
+Dialog_Ran = AddDialogTexture('Character/Boss/Yakumo/Ran.png')
+
+AddDialogSet(DIALOG_RIGHT)
+Dialog_Yukari = AddDialogTexture('Character/Boss/Yakumo/Yukari.png')
+Dialog_Yukari_Smile = AddDialogTexture('Character/Boss/Yakumo/Yukari2.png')
+Dialog_Yukari_Cry = AddDialogTexture('Character/Boss/Yakumo/Yukari3.png')
+
+AddDialogSet(DIALOG_RIGHT)
+Dialog_Yuka = AddDialogTexture('Character/Boss/Yuka/Yuka.png')
+Dialog_Yuka_NoWay = AddDialogTexture('Character/Boss/Yuka/Yuka2.png')

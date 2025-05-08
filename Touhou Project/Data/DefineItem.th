@@ -1,0 +1,98 @@
+
+-- Item Definition Functions
+-- These functions affect the item drop properties.
+
+-- SetItemTexture( texture file path )
+-- SetItemThrow( x, y, gravity )
+-- SetItemDropAmount( enemy, boss, player, variation )
+-- SetItemMagnet( y, absorb speed )
+
+-- Notes
+-- SetItemThrow tells us how much to 'fireworks' our items dropped.
+-- SetItemMagnet defines the line where our items get collected.
+
+SetItemTexture('Drops/Item.png')
+SetItemThrow(1, 2, -2)
+SetItemDropAmount(2, 5, 5, 5)
+SetItemMagnet(100, 10)
+
+
+
+-- AddItem
+-- Item type, Drop type, Drop rate,			-- Drop properties
+-- Score, Lives, Bomb, Power				-- Rewards
+-- Frame, Width, Hitbox						-- Texture properties
+-- Mass										-- Physics properties
+
+-- Item Type
+-- NORMAL_ITEM, BONUS_ITEM, SPECIAL_ITEM
+-- Normal items deduct points from player for PLAYER_DROP.
+-- Bonus items are given for free no matter what drops they are.
+-- Special items appear onscreen one at a time.
+
+-- Drop Type
+-- PLAYER_DROP, ENEMY_DROP, BOSS_DROP
+
+
+-- Small Score Items
+AddItem( NORMAL_ITEM, PLAYER_DROP, 100,
+	100, 0, 0, 0, -- 100 score
+	4, 32, 6 )
+AddItem( NORMAL_ITEM, ENEMY_DROP, 100,
+	100, 0, 0, 0, -- 100 score
+	4, 32, 6 )
+
+
+-- Small Power Items
+AddItem( NORMAL_ITEM, PLAYER_DROP, 50,
+	0, 0, 0, 0.05, -- 0.1 power
+	6, 32, 6 )
+AddItem( NORMAL_ITEM, ENEMY_DROP, 50,
+	0, 0, 0, 0.05, -- 0.1 power
+	6, 32, 6 )
+
+
+-- Big Power Items
+AddItem( NORMAL_ITEM, PLAYER_DROP, 1,
+	0, 0, 0, 0.1, -- 0.3 power
+	3, 32, 7 )
+AddItem( NORMAL_ITEM, ENEMY_DROP, 10,
+	0, 0, 0, 0.1, -- 0.3 power
+	3, 32, 7 )
+
+
+-- Small Bonus Items
+AddItem( BONUS_ITEM, PLAYER_DROP, 50,
+	150, 0, 0, 0, -- 150 score
+	5, 32, 6 )
+AddItem( BONUS_ITEM, ENEMY_DROP, 50,
+	150, 0, 0, 0, -- 150 score
+	5, 32, 6 )
+
+
+-- Big Bonus Items
+AddItem( BONUS_ITEM, PLAYER_DROP, 1,
+	200, 0, 0, 0, -- 200 score
+	1, 32, 8 )
+AddItem( BONUS_ITEM, ENEMY_DROP, 1,
+	200, 0, 0, 0, -- 200 score
+	1, 32, 8 )
+
+
+-- Big Special Items
+AddItem( SPECIAL_ITEM, PLAYER_DROP, 0.1,
+	0, 1, 0, 0, -- 1 life
+	0, 32, 14,
+	200 )
+AddItem( SPECIAL_ITEM, PLAYER_DROP, 0.1,
+	0, 0, 1, 0, -- 1 bomb
+	2, 32, 14,
+	100 )
+AddItem( SPECIAL_ITEM, ENEMY_DROP, 0.1,
+	0, 1, 0, 0, -- 1 life
+	0, 32, 14,
+	200 )
+AddItem( SPECIAL_ITEM, ENEMY_DROP, 0.1,
+	0, 0, 1, 0, -- 1 bomb
+	2, 32, 14,
+	100 )

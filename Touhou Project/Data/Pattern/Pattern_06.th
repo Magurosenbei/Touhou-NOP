@@ -1,0 +1,88 @@
+function Fusion(Position, Level, TexID_1, TexWidth_1, TexID_2, TexWidth_2)
+
+	local Wave = BulletWave()
+	local CurveWave = BulletWave()
+	local BigBall = BulletDef()
+	local btNum = 30 + 30 * Level
+	local Delay = 10
+
+
+	
+	BigBall.TexID = TexID_2
+	BigBall.Color = 1
+	BigBall.TexWidth = TexWidth_2
+	--BigBall.Scale = 8
+	--BigBall.HitBox = TexWidth_2 * BigBall.Scale * 0.95 * 0.5
+
+	BigBall.Spin = true
+	BigBall.SpinAngle = 1 / 180 * math.pi
+	BigBall.Position = Position
+	BigBall.Velocity = Vector(0, 2, 0)
+	BigBall.Mass = 10000
+	Wave:Throw(BigBall)
+	BigBall.SpinAngle = -1 / 180 * math.pi
+	BigBall.Position = Position
+	BigBall.Velocity = Vector(0, -2, 0)
+	Wave:Throw(BigBall)
+	
+	Wait(2400)
+	
+
+	Wave:SetVelocity(0, Vector())
+	Wave:SetVelocity(1, Vector())
+	Wave:SetPosition(0, Vector(0, -280, 0))
+	Wave:SetPosition(1, Vector(0, 280, 0))
+	
+	local S = 1
+	while S < 8 do
+		Wave:SetScale(0, S)
+		Wave:SetHitBox(0, TexWidth_2 * S * 0.95 * 0.5)
+		Wave:SetScale(1, S)
+		Wave:SetHitBox(1, TexWidth_2 * S * 0.95 * 0.5)
+		S = S + 0.2
+		Wait(60)
+	end
+	
+	HalfShot = BulletDef()
+	HalfShot.TexID = TexID_1
+	HalfShot.Color = 1
+	HalfShot.TexWidth = TexWidth_1
+	HalfShot.Scale = 0.6
+	HalfShot.HitBox = TexWidth_1 * HalfShot.Scale * 0.5 * 0.6
+	local Degree = 0
+	
+	local Factor = 0
+	for index = 0, 15 do
+		Factor = math.random(8, 15)
+		Degree = -math.pi / 2
+		while Degree < math.pi do
+			HalfShot.Velocity.x = math.sin(Degree)
+			HalfShot.Velocity.y = math.cos(Degree)
+			HalfShot.Position.y = -280
+			CurveWave:AddBullet(HalfShot)
+			Degree = Degree + Factor / 180 * math.pi
+		end
+		Degree = math.pi / 2
+		Factor = math.random(10, 14)
+		while Degree < 3 * math.pi / 2 do
+			HalfShot.Velocity.x = math.sin(Degree)
+			HalfShot.Velocity.y = math.cos(Degree)
+			HalfShot.Position.y = 280
+			CurveWave:AddBullet(HalfShot)
+			Degree = Degree + Factor / 180 * math.pi
+		end
+		CurveWave:ThrowInAll()
+		CurveWave:ReleaseAll()
+		Wait(1000)
+	end
+	Wait(500)
+	while S > -0.1 do
+		Wave:SetScale(0, S)
+		Wave:SetHitBox(0, TexWidth_2 * S * 0.95 * 0.5)
+		Wave:SetScale(1, S)
+		Wave:SetHitBox(1, TexWidth_2 * S * 0.95 * 0.5)
+		S = S - 0.2
+		Wait(30)
+	end
+	Wave:ReleaseAll()
+end

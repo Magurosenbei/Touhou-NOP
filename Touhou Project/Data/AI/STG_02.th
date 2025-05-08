@@ -1,0 +1,101 @@
+function RandomEnemy()
+	local EWave = EnemyWave()
+	for index = 1, 20 do
+		EWave:AddEnemy(Enemy, 32, 32, 20, math.random(0, 2))
+	end
+	
+	for index = 0, 19 do
+		local Vec = Vector(math.random(-100, 100), 260, 0)
+		EWave:SetPosition(index, Vec)
+		if Vec.x >= 0 then
+			EWave:SetVelocity(index, Vector(math.random(5, 8), -10, 0))
+		else
+			EWave:SetVelocity(index, Vector(math.random(-8, 5), -10, 0))
+		end
+	end
+	
+	for index = 0, 19 do
+		EWave:ThrowFromList(index)
+		Wait(50)	
+	end
+	
+	PlaySFX(ShotSFX01)
+	for index = 0, 19 do 
+		if EWave:GetHP(index) > 0 then
+			PlaySFX(ShotSFX01)
+			SpreadShot(EWave:GetPosition(index), 5, 0.01, math.random(0, 60), TalismenID, math.random(0, 7), 16, 4, 1)
+		end
+	end
+	EWave:ReleaseAll()
+end
+
+function FromBottom(Assign)
+	local EWave = EnemyWave()
+	
+	for index = 0, 4 do
+		EWave:AddEnemy(Enemy, 32, 32, 70, math.random(0, 2))
+	end
+	
+	for index = 0, 4 do
+		EWave:SetPosition(index, Vector(200 * Assign, -240, 0))
+		EWave:SetVelocity(index, Vector(15 * -Assign, math.random(15, 20), 0))
+	end
+	
+	for index = 0, 4 do
+		EWave:ThrowFromList(index)
+		Wait(140)
+	end
+	
+	Wait(500)
+	
+	for index = 0, 4 do
+		if EWave:GetHP(index) > 0 then
+			for time = 0, 1 do
+				PlaySFX(ShotSFX01)
+				SpreadShot(EWave:GetPosition(index), time + 2, 0.01, math.random(0, 17), BallID, math.random(0, 7), 27, 6, 0.6)
+				Wait(50)
+			end
+		end
+	end
+	
+	for index = 0, 4 do
+		EWave:SetVelocity(index, Vector(6 * -Assign, 8, 0))
+	end
+	
+	EWave:ReleaseAll()
+end
+
+function StraightHorizon(Assign)
+	local EWave = EnemyWave()
+	
+	for index = 0, 5 do
+		EWave:AddEnemy(Enemy, 32, 32, 70, math.random(0, 2))
+	end
+	
+	for index = 0, 5 do
+		EWave:SetPosition(index, Vector(Assign * 220, 220, 0))
+		EWave:SetVelocity(index, Vector(-Assign * math.random(5, 15), 0, 0))
+	end
+		
+	for index = 0, 5 do
+		EWave:ThrowFromList(index)
+		Wait(140)
+	end
+	
+	Wait(150)
+	
+	for index = 0, 5 do
+		EWave:SetVelocity(index, Vector(-Assign * math.random(8, 15), -5, 0))
+	end
+	
+	for index = 0, 5 do
+		if EWave:GetHP(index) > 0 then
+			for time = 0, 1 do
+				PlaySFX(ShotSFX03)
+				CrossShot(EWave:GetPosition(index), 3, 6, Assign * math.random(12, 45),  ButterflyID, math.random(0, 7), 32, 4.0, 1.0)
+				Wait(50)
+			end
+		end
+	end
+	EWave:ReleaseAll()
+end

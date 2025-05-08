@@ -1,0 +1,41 @@
+function SpreadShot(Position, Level, SpeedFactor, nAngle, TexID_1, Color_1, TexWidth_1, HitBox, Scale)
+	
+	if SpeedFactor < 1 then
+		SpeedFactor = 1
+	end
+	
+	local Wave = BulletWave()
+	local Shot = BulletDef()
+	
+	Shot.Position = Position
+	Shot.HitBox = HitBox
+	Shot.Scale = Scale
+	
+	Shot.TexID = TexID_1
+	Shot.Color = Color_1
+	Shot.TexWidth = TexWidth_1
+
+	Velocity = Vector(0, 10, 0)
+	
+	local Num = 1 + Level * 2
+	local Spread = 90 / Num / 8 + nAngle
+	
+	Num = Num / 2
+	Shot.Velocity = GetPlayerPosition() - Position
+	Velocity = Shot.Velocity:Normalize() * SpeedFactor
+	Shot.Velocity = Velocity
+	Shot.Acceleration = Velocity / 100
+	Wave:AddBullet(Shot)
+		
+	for count = 1, Num do
+		Shot.Velocity = Velocity
+		Shot.Velocity = Velocity:RotateFromPoint(Vector(), Spread / 180 * PIE * count)
+		Wave:AddBullet(Shot)
+		Shot.Velocity = Velocity
+		Shot.Velocity = Velocity:RotateFromPoint(Vector(), -Spread / 180 * PIE * count)
+		Wave:AddBullet(Shot)
+		Wait(10)
+	end
+	Wave:ThrowInAll()
+	Wave:ReleaseAll()
+end

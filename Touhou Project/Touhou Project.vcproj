@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="shift_jis"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="Touhou Project"
+	ProjectGUID="{093F0D8A-692D-48C6-B836-9CED632AD5A7}"
+	RootNamespace="TouhouProject"
+	Keyword="Win32Proj"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="1"
+			ATLMinimizesCRunTimeLibraryUsage="true"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="./Source Code/; ./Source Code/Luabind/; ./Source Code/boost/; ./Source Code/Lua/;"
+				AdditionalUsingDirectories=""
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="1"
+				RuntimeTypeInfo="true"
+				UsePrecompiledHeader="1"
+				PrecompiledHeaderThrough="stdafx.h"
+				WarningLevel="4"
+				WarnAsError="true"
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="winmm.lib opengl32.lib glu32.lib glaux.lib odbc32.lib odbccp32.lib"
+				LinkIncremental="2"
+				AdditionalLibraryDirectories="lib/"
+				IgnoreAllDefaultLibraries="false"
+				IgnoreDefaultLibraryNames="LIBC.lib; LIBCMT.lib; MSVCRT.lib;"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="1"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="./Source Code/; ./Source Code/Luabind/; ./Source Code/boost/; ./Source Code/Lua/;"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE"
+				GeneratePreprocessedFile="0"
+				StringPooling="true"
+				ExceptionHandling="1"
+				BasicRuntimeChecks="0"
+				RuntimeLibrary="1"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderThrough="stdafx.h"
+				PrecompiledHeaderFile="$(IntDir)\$(TargetName).pch"
+				WarningLevel="4"
+				WarnAsError="true"
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="winmm.lib opengl32.lib glu32.lib glaux.lib odbc32.lib odbccp32.lib"
+				LinkIncremental="1"
+				AdditionalLibraryDirectories="lib/"
+				IgnoreDefaultLibraryNames="LIBC.lib; LIBCMT.lib;MSVCRT.lib;"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
+			<File
+				RelativePath=".\Resource\small.ico"
+				>
+			</File>
+			<File
+				RelativePath=".\Resource\Touhou Project.ico"
+				>
+			</File>
+			<File
+				RelativePath=".\Resource\Touhou Project.rc"
+				>
+			</File>
+			<Filter
+				Name="lib"
+				>
+				<File
+					RelativePath=".\lib\d3dx9.lib"
+					>
+				</File>
+				<File
+					RelativePath=".\lib\dsound.lib"
+					>
+				</File>
+				<File
+					RelativePath=".\lib\dxguid.lib"
+					>
+				</File>
+				<File
+					RelativePath=".\lib\GLee.lib"
+					>
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="Camera"
+			>
+			<File
+				RelativePath=".\Source Code\camera.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Source Code\camera.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Texture"
+			>
+			<File
+				RelativePath=".\Source Code\texture.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Source Code\texture.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Engine"
+			>
+			<File
+				RelativePath=".\Source Code\engine.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Source Code\engine.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Manager"
+			>
+			<File
+				RelativePath=".\Source Code\TimeFrameManager.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Source Code\TimeFrameManager.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Character"
+			>
+			<Filter
+				Name="Enemy"
+				>
+				<File
+					RelativePath=".\Source Code\boss.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Source Code\boss.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Source Code\enemy.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Source Code\enemy.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Player"
+				>
+				<File
+					RelativePath=".\Source Code\player.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Source Code\player.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Source Code\weaponscript.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Source Code\weaponscript.h"
+					>
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="Bullet"
+			>
+			<File
+				RelativePath=".\Source Code\bullet.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Source Code\bullet.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Standard Object Abstract"
+			>
+			<File
+				RelativePath=".\Source Code\object.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Do not modify"
+			>
+			<Filter
+				Name="Windows Main"
+				>
+				<File
+					RelativePath=".\Source Code\Main.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Source Code\Main.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Header Files"
+				Filter="h;hpp;hxx;hm;inl;inc;xsd"
+				UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+				>
+				<File
+					RelativePath=".\Source Code\factory.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Source Code\Resource.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Source Code\singleton.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Source Code\stdafx.h"
+					>
+				</File>
+				<Filter
+					Name="3D Vector"
+					>
+					<File
+						RelativePath=".\Source Code\vector.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Source Code\vector.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Array"
+					>
+					<File
+						RelativePath=".\Source Code\array.h"
+						>
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="Source Files"
+				Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+				UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+				>
+				<File
+					RelativePath=".\Source Code\stdafx.cpp"
+					>
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="Grid"
+			>
+			<File
+				RelativePath=".\Source Code\grid.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Source Code\grid.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Audio Engine"
+			>
+			<File
+				RelativePath=".\Source Code\AudioEngine.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Source Code\AudioEngine.h"
+				>
+			</File>
+			<Filter
+				Name="DirectSound Headers"
+				>
+				<File
+					RelativePath=".\Source Code\DirectX\d3d9types.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Source Code\DirectX\dls1.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Source Code\DirectX\dmdls.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Source Code\DirectX\dmerror.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Source Code\DirectX\dmplugin.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Source Code\DirectX\dmusbuff.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Source Code\DirectX\dmusicc.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Source Code\DirectX\dmusici.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Source Code\DirectX\dsound.h"
+					>
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="Interface"
+			>
+			<File
+				RelativePath=".\Source Code\HeadsupDisplay.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Source Code\HeadsupDisplay.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Source Code\interface.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Source Code\interface.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="GamePlay"
+			>
+			<File
+				RelativePath=".\Source Code\GamePlay.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Source Code\GamePlay.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Noise Generator"
+			>
+			<File
+				RelativePath=".\Source Code\noise.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Source Code\noise.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Item"
+			>
+			<File
+				RelativePath=".\Source Code\ItemSystem.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Source Code\ItemSystem.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Bullet Wave"
+			>
+			<File
+				RelativePath=".\Source Code\wave.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Source Code\wave.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Game Mouse"
+			>
+			<File
+				RelativePath=".\Source Code\GameMouse.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Source Code\GameMouse.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="RunTime Script"
+			>
+			<File
+				RelativePath=".\Source Code\RtScript.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Source Code\RtScript.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Font"
+			>
+			<File
+				RelativePath=".\Source Code\Font.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Source Code\Font.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Dialog"
+			>
+			<File
+				RelativePath=".\Source Code\Dialog.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Source Code\Dialog.h"
+				>
+			</File>
+			<Filter
+				Name="Fly in"
+				>
+				<File
+					RelativePath=".\Source Code\FlyIn.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Source Code\FlyIn.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Cut in"
+				>
+				<File
+					RelativePath=".\Source Code\CutIn.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Source Code\CutIn.h"
+					>
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="Weather System"
+			>
+			<File
+				RelativePath=".\Source Code\WeatherSystem.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Source Code\WeatherSystem.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Enemy Script"
+			>
+			<File
+				RelativePath=".\Source Code\EnemyScript.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Source Code\EnemyScript.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Libraries"
+			>
+			<File
+				RelativePath=".\lib\DevIL.lib"
+				>
+			</File>
+			<File
+				RelativePath=".\lib\ILU.lib"
+				>
+			</File>
+			<File
+				RelativePath=".\lib\ILUT.lib"
+				>
+			</File>
+			<File
+				RelativePath=".\lib\lua.x86.release.lib"
+				>
+			</File>
+			<File
+				RelativePath=".\lib\luabind.x86.release.lib"
+				>
+			</File>
+		</Filter>
+		<File
+			RelativePath=".\Source Code\Instruction Manuel.txt"
+			>
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

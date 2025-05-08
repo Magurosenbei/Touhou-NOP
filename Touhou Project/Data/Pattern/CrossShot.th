@@ -1,0 +1,28 @@
+function CrossShot(Position, Speed, Level, Tilt, TexID_1, Color_1, TexWidth_1, HitBox, Scale)
+
+	local Wave = BulletWave()
+	local Shot = BulletDef()
+	local btNum = (10 + 2 * Level) / 4
+	local Delay = 30
+
+	Shot.Position = Position
+	Shot.TexID = TexID_1
+	Shot.Color = Color_1
+	Shot.TexWidth = TexWidth_1
+	Shot.HitBox = HitBox
+	Shot.Scale = Scale
+	local VelocityStore = {Vector(0, Speed, 0), Vector(Speed, 0, 0), Vector(0, -Speed, 0), Vector(-Speed, 0, 0)}
+	Shot.Velocity = Vector(0, Speed, 0)
+	
+	
+	for index = 0, btNum do
+		for id = 1, 4 do
+			Shot.Velocity = VelocityStore[id]:RotateFromPoint(Vector(), Tilt / 180 * math.pi)
+			Shot.Acceleration = (GetPlayerPosition() - Position):Normalize() * 0.05
+			Wave:Throw(Shot)
+		end
+		Wait(Delay)
+	end
+
+	Wave:ReleaseAll()
+end

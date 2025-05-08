@@ -1,0 +1,95 @@
+function RollShot(Position, nAngle, nAssign, Level, OriginSpeed, TexID_1, Color_1, TexWidth_1, TexID_2, Color_2, TexWidth_2)
+	
+	local Wave = BulletWave()
+	local Shot = BulletDef()
+	local nGapLength = 30
+	local Place = Vector(0, nGapLength, 0) + Position
+	local nWay = 5
+	local nSpeed = 1.6
+	local nWaySpeed = ( 3.4 + 0.2 * Level - nSpeed ) / nWay * 0.5;
+	local nWayAngle = 120 / nWay * nAssign;
+	
+	Shot.TexID = TexID_1
+	Shot.Color = Color_1
+	Shot.TexWidth = TexWidth_1
+	Shot.HitBox = 1.0
+	Shot.Scale = 1.2
+	
+	V = Vector(0, 1, 0)
+	
+	if nAssign == - 1 then
+		Shot.TexID = TexID_2
+		Shot.Color = Color_2
+		Shot.TexWidth = TexWidth_2
+	else
+		Shot.TexID = TexID_1
+		Shot.Color = Color_1
+		Shot.TexWidth = TexWidth_1
+	end
+	
+	local nDelay = 10;
+	
+	for count2 = 0, 1 do
+		for count3 = 0, nWay do
+			if OriginSpeed == 0 then
+			
+				Shot.TexID = TexID_2
+				Shot.Color = Color_2
+				Shot.TexWidth = TexWidth_2
+				Shot.Position = Place:RotateFromPoint(Position, nAngle / 180 * math.pi)
+				Shot.Velocity = V * nSpeed
+				Shot.Velocity = Shot.Velocity:RotateFromPoint(Vector(), nAngle)
+				Wave:Throw(Shot)
+
+				Shot.TexID = TexID_1
+				Shot.Color = Color_1
+				Shot.TexWidth = TexWidth_1
+			
+				Shot.Position = Place:RotateFromPoint(Position, -nAngle / 180 * math.pi)
+				Shot.Velocity = V * nSpeed
+				Shot.Velocity = Shot.Velocity:RotateFromPoint(Vector(), -nAngle)
+				Wave:Throw(Shot)
+				
+				Shot.TexID = TexID_2
+				Shot.Color = Color_2
+				Shot.TexWidth = TexWidth_2
+				Shot.Position = Place:RotateFromPoint(Position, nAngle / 180 * math.pi * 4)
+				Shot.Velocity = V * nSpeed
+				Shot.Velocity = Shot.Velocity:RotateFromPoint(Vector(), nAngle * 4)
+				Wave:Throw(Shot)
+
+				Shot.TexID = TexID_1
+				Shot.Color = Color_1
+				Shot.TexWidth = TexWidth_1
+			
+				Shot.Position = Place:RotateFromPoint(Position, -nAngle / 180 * math.pi * 4)
+				Shot.Velocity = V * nSpeed
+				Shot.Velocity = Shot.Velocity:RotateFromPoint(Vector(), -nAngle * 4)
+				Wave:Throw(Shot)
+			end
+			
+			Wait(nDelay)
+			nSpeed = nSpeed + nWaySpeed
+			nAngle = nAngle + nWayAngle
+		end
+		nWaySpeed = -nWaySpeed;
+	end
+	Wave:ReleaseAll()
+end
+
+
+function RollShotTask(Position, nAssign, Level, OriginSpeed, TexID_1, Color_1, TexWidth_1, TexID_2, Color_2, TexWidth_2)
+
+	local nWay = 2 + Level
+	if m_nLevel == 0 then
+		nWay = 3
+	end
+	local nWayAngle = 360 / nWay;
+	local nBaseAngle = 90;
+	local nFrame = 10
+
+	for count = 0, nWay do
+		local nAngle = nBaseAngle + nWayAngle * count
+		RollShot(Position, nAngle, nAssign, Level, OriginSpeed, TexID_1, Color_1, TexWidth_1, TexID_2, Color_2, TexWidth_2)
+	end
+end
